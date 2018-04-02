@@ -2,8 +2,10 @@ It is common that the data we are going to analyze are not complete, here I take
 ### Handling Missing Values  
 
 1.check some data . 
+
     sf_permits = pd.read_csv("../input/building-permit-applications-data/Building_Permits.csv")
     sf_data.samples(5)  
+    
 ![Data Samples](https://i.imgur.com/Y9dRpwo.png) 
 
 2.have a general idea about the missing data we have 
@@ -19,6 +21,7 @@ It is common that the data we are going to analyze are not complete, here I take
 
     #percent of data that is missing
     (total_missing/total_cells) * 100  
+    
  26.26002315058403 
  
 3.figure out why the data is missing  
@@ -37,10 +40,12 @@ in that column and row.
     #remove all columns with at least one missing value
     columns_with_na_dropped = sf_permits.dropna(axis=1)
     columns_with_na_dropped.head() 
+    
  We can check how much data we lose:    
  
     sf_permits.shape[1]  
     columns_with_na_dropped.shape[1] 
+    
 5.filling in missing values automatically  
 Another option is to try and fill in the missing values. For this next bit, let's get a small  
 subsection of the data so that it will print well.  
@@ -53,6 +58,7 @@ We can use the Panda's fillna() function to fill in missing values in a datafram
 
     #replace all NA's with 0
     subset_nfl_data.fillna(0) 
+    
 To be a bit more savvy and replace missing values with whatever value comes directly after it in the same column to have kind of logical order.   
 
     #Try replacing all the NaN's in the sf_permits data with the one that
