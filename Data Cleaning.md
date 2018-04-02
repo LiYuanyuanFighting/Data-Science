@@ -43,7 +43,7 @@ in that column and row.
     
  We can check how much data we lose:    
  
-    sf_permits.shape[1]  
+    sf_permits.shape[1]  
     columns_with_na_dropped.shape[1] 
     
 5.filling in missing values automatically  
@@ -57,7 +57,7 @@ subsection of the data so that it will print well.
 We can use the Panda's fillna() function to fill in missing values in a dataframe for us. One option we have is to specify what we want the `NaN` values to be replaced with. Here, I'm saying that I would like to replace all the `NaN` values with 0.  
 
     #replace all NA's with 0
-    subset_nfl_data.fillna(0) 
+    subset_nfl_data.fillna(0) 
     
 To be a bit more savvy and replace missing values with whatever value comes directly after it in the same column to have kind of logical order.   
 
