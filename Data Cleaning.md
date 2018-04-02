@@ -44,7 +44,7 @@ in that column and row.
  We can check how much data we lose:    
  
     sf_permits.shape[1]  
-    columns_with_na_dropped.shape[1] 
+    columns_with_na_dropped.shape[1] 
     
 5.filling in missing values automatically  
 Another option is to try and fill in the missing values. For this next bit, let's get a small  
