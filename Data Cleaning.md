@@ -65,3 +65,56 @@ To be a bit more savvy and replace missing values with whatever value comes dire
     #comes directly after it and then replacing any remaining NaN's with 0
     sf_permits.fillna(method='bfill', axis=0).fillna(0)
 
+### Scaling and Normalization  
+See the Scaling and Normalization.md . 
+
+### Parsing dates  
+See the [Details](https://www.kaggle.com/rtatman/data-cleaning-challenge-parsing-dates/)  
+ 
+
+    #check the data type of our date column
+    landslides['date'].dtype 
+ 
+    #create a new column, date_parsed, with the parsed dates
+    landslides['date_parsed'] = pd.to_datetime(landslides['date'], format = "%m/%d/%y")  
+    
+    #Use pandas to try to infer what the right date format should be
+    landslides['date_parsed'] = pd.to_datetime(landslides['Date'], infer_datetime_format=True)  
+    
+### Character Encodings  
+    
+    #helpful character encoding module
+    import chardet 
+    
+Character encodings are specific sets of rules for mapping from raw binary byte strings (that look like this: 0110100001101001) to characters that make up human-readable text (like "hi"). There are many different encodings, and if you tried to read in text with a different encoding that the one it was originally written in, you ended up with scrambled text called "mojibake" (said like mo-gee-bah-kay). Here's an example of mojibake:
+
+æ–‡å—åŒ–ã??  
+UTF-8 is the standard text encoding. All Python code is in UTF-8 and, ideally, all your data should be as well. It's when things aren't in UTF-8 that you run into trouble.  
+    
+    #encode it to a different encoding, replacing characters that raise errors
+    after = before.encode("utf-8", errors = "replace")  
+    #convert it back to utf-8
+    print(after.decode("utf-8"))  
+    
+    #look at the first ten thousand bytes to guess the character encoding
+with open("../input/kickstarter-projects/ks-projects-201801.csv", 'rb') as rawdata:
+    result = chardet.detect(rawdata.read(10000))
+
+    #check what the character encoding might be
+    print(result)  
+    kickstarter_2016 = pd.read_csv("../input/kickstarter-projects/ks-projects-201612.csv", encoding='Windows-1252') . 
+    
+###  Inconsistent Data Entry  
+    
+    #helpful modules
+    import fuzzywuzzy
+    from fuzzywuzzy import process
+    import chardet  
+See the [Details](https://www.kaggle.com/rtatman/data-cleaning-challenge-inconsistent-data-entry/)  
+    
+    #get the top 10 closest matches to "d.i khan"
+    matches = fuzzywuzzy.process.extract("d.i khan", cities, limit=10, scorer=fuzzywuzzy.fuzz.token_sort_ratio)
+
+    #take a look at them
+    matches  
+    
