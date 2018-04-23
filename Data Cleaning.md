@@ -64,3 +64,4 @@ To be a bit more savvy and replace missing values with whatever value comes dire
     #Try replacing all the NaN's in the sf_permits data with the one that
     #comes directly after it and then replacing any remaining NaN's with 0
     sf_permits.fillna(method='bfill', axis=0).fillna(0)
+
