@@ -110,11 +110,14 @@ with open("../input/kickstarter-projects/ks-projects-201801.csv", 'rb') as rawda
     import fuzzywuzzy
     from fuzzywuzzy import process
     import chardet  
+    
 See the [Details](https://www.kaggle.com/rtatman/data-cleaning-challenge-inconsistent-data-entry/)  
     
     #get the top 10 closest matches to "d.i khan"
     matches = fuzzywuzzy.process.extract("d.i khan", cities, limit=10, scorer=fuzzywuzzy.fuzz.token_sort_ratio)
 
     #take a look at them
-    matches  
+    matches    
     
+    
+      
